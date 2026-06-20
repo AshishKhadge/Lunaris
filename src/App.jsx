@@ -24,6 +24,16 @@ const DynamicIcon = ({ name, className }) => {
   return <IconComponent className={className} />;
 };
 
+// Helper function to resolve public asset paths dynamically (handles GH Pages subfolders)
+const getAssetPath = (path) => {
+  if (!path) return '';
+  if (path.startsWith('/')) {
+    return `${import.meta.env.BASE_URL}${path.substring(1)}`;
+  }
+  return path;
+};
+
+
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -276,7 +286,7 @@ export default function App() {
               <div className="absolute inset-0 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-2xl blur-3xl opacity-20 pointer-events-none" />
               <div className="relative glass-panel rounded-2xl p-2.5 overflow-hidden shadow-2xl border border-white/10">
                 <img 
-                  src={websiteContent.hero.image} 
+                  src={getAssetPath(websiteContent.hero.image)} 
                   alt="Lunaris Dashboard Mockup" 
                   className="w-full h-auto rounded-xl shadow-lg border border-white/5 object-cover"
                 />
@@ -301,7 +311,7 @@ export default function App() {
                 <div className="absolute inset-0 bg-brand-cyan/10 rounded-2xl blur-2xl pointer-events-none" />
                 <div className="relative rounded-2xl overflow-hidden shadow-xl border border-white/5 bg-slate-900/40 p-2">
                   <img 
-                    src={websiteContent.about.image} 
+                    src={getAssetPath(websiteContent.about.image)} 
                     alt="Creative Workspace" 
                     className="w-full h-auto rounded-xl object-cover aspect-[4/3] sm:aspect-[16/10]"
                   />
@@ -428,7 +438,7 @@ export default function App() {
                     {/* Project BG Image */}
                     <div className="absolute inset-0 z-0">
                       <img 
-                        src={project.image} 
+                        src={getAssetPath(project.image)} 
                         alt={project.title} 
                         className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-108"
                       />
