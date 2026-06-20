@@ -131,3 +131,8 @@ You can deploy this site in under 2 minutes for free.
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. Click **Deploy**.
+
+### Deploying to GitHub Pages
+
+This project is configured to build and deploy automatically via GitHub Actions to GitHub Pages on every push to the `main` branch.
+
